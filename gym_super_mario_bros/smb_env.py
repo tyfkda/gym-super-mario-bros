@@ -427,6 +427,7 @@ class SuperMarioBrosEnv(NESEnv):
             world=self._world,
             x_pos=self._x_position,
             y_pos=self._y_position,
+            is_dead=self._is_dying or self._is_dead,
         )
 
 
