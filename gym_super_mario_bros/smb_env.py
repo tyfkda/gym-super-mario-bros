@@ -37,7 +37,7 @@ class SuperMarioBrosEnv(NESEnv):
         rom_mode="vanilla",
         lost_levels=False,
         target=None,
-        render_mode="human",
+        # render_mode="human",
         reward_fn=None,
     ):
         """
@@ -58,7 +58,7 @@ class SuperMarioBrosEnv(NESEnv):
         # decode the ROM path based on mode and lost levels flag
         rom = rom_path(lost_levels, rom_mode)
         # initialize the super object with the ROM path
-        super(SuperMarioBrosEnv, self).__init__(rom, render_mode=render_mode)
+        super(SuperMarioBrosEnv, self).__init__(rom)
         # set the target world, stage, and area variables
         target = decode_target(target, lost_levels)
         self._target_world, self._target_stage, self._target_area = target
