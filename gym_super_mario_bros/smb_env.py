@@ -131,7 +131,7 @@ class SuperMarioBrosEnv(NESEnv):
     def _time(self):
         """Return the time left (0 to 999)."""
         # time is represented as a figure with 3 10's places
-        return self._read_mem_range(0x07F8, 3)
+        return int(self._read_mem_range(0x07F8, 3))
 
     @property
     def _coins(self):
@@ -148,7 +148,7 @@ class SuperMarioBrosEnv(NESEnv):
     def _x_position(self):
         """Return the current horizontal position."""
         # add the current page 0x6d to the current x
-        return self.ram[0x6D] * 0x100 + self.ram[0x86]
+        return int(self.ram[0x6D]) * 0x100 + int(self.ram[0x86])
 
     @property
     def _left_x_position(self):
@@ -156,12 +156,12 @@ class SuperMarioBrosEnv(NESEnv):
         # TODO: resolve RuntimeWarning: overflow encountered in ubyte_scalars
         # subtract the left x position 0x071c from the current x 0x86
         # return (self.ram[0x86] - self.ram[0x071c]) % 256
-        return np.uint8(int(self.ram[0x86]) - int(self.ram[0x071C])) % 256
+        return (int(self.ram[0x86]) - int(self.ram[0x071C])) % 256
 
     @property
     def _y_pixel(self):
         """Return the current vertical position."""
-        return self.ram[0x03B8]
+        return int(self.ram[0x03B8])
 
     @property
     def _y_viewport(self):
